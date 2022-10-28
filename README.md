@@ -1,1 +1,1 @@
-# BSTDataStruct
+# Binary Search Tree
