@@ -16,9 +16,11 @@ how a compiler might possibly analyze and parse syntax through a trivial approac
 
 ## Features
 
-- While this program is minimal, it does make an attempt to implement a Map using a BST with key value pairs of the form: _(Key, Value)_
-- Secondly, Arithmetic Expressions can be dislpayed appropriately with balanced parantheses such as:
+- Arithmetic Expressions can be dislpayed appropriately with balanced parantheses such as:
 - _((((A+B)-C)+D)*E)_ or _((4* 2)*(3+6))_
+- Secondly, while this program is minimal, it does make an attempt to implement a Map using a BST with key value pairs of the form: 
+- _(Key, Value)_
+
 
 ## Contributing
 
