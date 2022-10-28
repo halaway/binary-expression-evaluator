@@ -69,9 +69,8 @@ public:
 
   friend std::ostream &operator<<(std::ostream &os,
                                   const KeyValuePairs<K, V> &rhs) {
-    // os << (rhs.valueVal);
     os << "(" << rhs.keyVal << "," << rhs.valueVal << ") ";
-    // os << "hello";
+ 
     return os;
   }
 };
