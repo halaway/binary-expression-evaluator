@@ -119,9 +119,8 @@ public:
 
   // Overloaded ostream operator for Map Objects
   friend std::ostream &operator<<(std::ostream &os, const Map<K, V> &rhs) {
-    // os << rhs.keyVal;
+    os << rhs.keyVal;
     // os << *(rhs.root);
-    os << "3";
     return os;
   }
 };
