@@ -17,7 +17,7 @@ how a compiler might possibly analyze and parse syntax through a trivial approac
 ## Features
 
 - Arithmetic Expressions can be dislpayed appropriately with balanced parantheses such as:
-- _((((A+B)-C)+D)*E)_ or _((4* 2)*(3+6))_
+- _((((A+B)-C)+D)*E)_ or _((4* 2)*(3+6))_ where each inner node is an operator and every leaf being an operand.
 - Secondly, while this program is minimal, it does make an attempt to implement a Map using a BST with key value pairs of the form: 
 - _(Key, Value)_
 
