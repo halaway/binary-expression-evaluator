@@ -1,4 +1,4 @@
-# Binary Search Tree
+# Binary Expression Evaluator
 Understanding Recursive Data Structures.
 
 ## Dependencies
