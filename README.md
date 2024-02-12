@@ -14,6 +14,8 @@ to solve and display Arithmetic Expressions of two possible forms: _"A+B"_ and _
 how a compiler might possibly analyze and parse syntax through a trivial approach.
 
 | <img width="242" alt="Screen Shot 2024-02-11 at 10 24 00 PM" src="https://github.com/halaway/binary-expression-evaluator/assets/31904474/5f279daa-1b7d-4188-9fef-550d7c45b955"> |
+|:--:| 
+| *Implementation* |
 
 | <img width="301" alt="Screen Shot 2024-02-11 at 10 28 51 PM" src="https://github.com/halaway/binary-expression-evaluator/assets/31904474/d5953b91-9fb3-4f1c-b46d-ffa922c4f8b0"> |
 |:--:| 
