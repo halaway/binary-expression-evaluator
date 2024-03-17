@@ -29,13 +29,13 @@ public:
   tNode(const T &nodeItem, tNode<T> *lft = NULL, tNode<T> *rght = NULL)
       : left(lft), right(rght), item(nodeItem) {}
 
+
   // overloaded ostream operator for tNode
 
-  friend std::ostream &operator<<(std::ostream &os, const tNode<T> &rhs) {
-    // os << rhs.item;
-    os << "he";
-    return os;
-  }
+  // friend std::ostream &operator<<(std::ostream &os, const tNode<T> &rhs) {
+  //    //os << rhs.item;
+  //   os << "he";
+  //   return os; }
 };
 
 // BST Class
@@ -72,6 +72,37 @@ private:
     std::cout << (ptr->item) << " ";
     //Fix? for MAP *(ptr->item)
     InorderTraversal(ptr->right);
+  }
+
+  // recursive BST search
+  tNode<T> *searchP(const T &find_item, tNode<T> *ptr) {
+    if (ptr != NULL) {
+
+      if (ptr->item == find_item) {
+        return ptr;
+      }
+      // find_item is less than current
+      else if (ptr->item > find_item) {
+        return searchP(find_item, ptr->left);
+      }
+      // find_item is greater than current
+      else if (ptr->item < find_item) {
+        return searchP(find_item, ptr->right);
+      }
+    }
+    return NULL;
+  }
+
+  //Inorder Traversal Helper Function 
+  //with overloaded key value pairs ostream operator  
+  void const printInOrderr( const tNode<T> *ptr){
+
+    if( ptr == nullptr ) 
+      return;
+
+    printInOrderr(ptr->left);
+    std::cout<<  (*(ptr->item) ) <<" ";
+    printInOrderr(ptr->right);
   }
 
   // traversal insert for overloaded assignment operator
@@ -298,6 +329,11 @@ public:
     }
   }
 
+
+   tNode<T>* searchP(const T& find_item) const {
+        return searchP(root, find_item);
+    }
+
   // check if char is an operator
   bool isOperator(const char &input_item) {
     return input_item == '+' || input_item == '-' || input_item == '*' ||
@@ -316,9 +352,10 @@ public:
     if (ptr == nullptr) {
       std::cout << "Input: " << input_item << " not found" << endl;
     } else {
-      std::cout << "Input was found!" << endl;
+      std::cout << "Input was found!" << input_item << endl;
     }
   }
+  
 
   // Insert Function
   void insert(const T &item) { root = InsertRecursive(item, root); }
@@ -333,6 +370,9 @@ public:
 
   // Inorder Traversal Member Function
   void inOrder() { InorderTraversal(root); }
+
+
+  void printInOrder() { printInOrderr(root); }
 
   // Inorder Solve Member Function
   void InorderSolve() {

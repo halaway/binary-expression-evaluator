@@ -66,13 +66,13 @@ public:
   }
 
   // Overloaded Ostream operator
-
   friend std::ostream &operator<<(std::ostream &os,
                                   const KeyValuePairs<K, V> &rhs) {
     os << "(" << rhs.keyVal << "," << rhs.valueVal << ") ";
- 
     return os;
   }
+
+
 };
 
 // Map class class Comparable
@@ -99,6 +99,7 @@ public:
 
   // Insert Keys and Values Member Function
   void InsertMap(K keys, V vals) {
+
     // Create New Entry
     KeyValuePairs<K, V> *ptr;
     ptr = new KeyValuePairs<K, V>(keys, vals);
@@ -115,14 +116,25 @@ public:
   }
 
   // Inorder Key Pairs
-  void InorderKeyPairs() { root->inOrder(); }
+  //void InorderKeyPairs() { root->inOrder(); }
+
+  // Inorder Key Value Pairs Print
+  void printInorder() { root->printInOrder(); }
 
   // Overloaded ostream operator for Map Objects
-  friend std::ostream &operator<<(std::ostream &os, const Map<K, V> &rhs) {
-    os << rhs.keyVal;
-    // os << *(rhs.root);
+  // friend std::ostream &operator<<(std::ostream &os, const Map<K, V> &rhs) {
+  //   os << rhs.keyVal;
+  //   //os << *(rhs.root);
+  //   return os;
+  // }
+
+  friend std::ostream& operator<<(std::ostream& os,  Map<K, V>& map) {
+    // Call a recursive function to traverse the BST and print each element
+    map.printInorder();
     return os;
-  }
+    }
+
+    
 };
 
 #endif

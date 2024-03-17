@@ -11,7 +11,9 @@ using namespace std;
  * test of BST and MAP Implementation
 */
 
+
 int main(){
+    
     //BST of letters
     vector<string> letter_alpha = {"F","B","A","D","C","E","G","I","H"};
     
@@ -49,6 +51,40 @@ int main(){
     std::cout << "\nThird Tree: ";
     thirdTree->infix();
     thirdTree->InorderSolve();
+
+
+    // BINARY TREE KV Insert
+
+    std::cout<<"\nCreating Map using BST: First Method"<<std::endl;
+    BST<KeyValuePairs<int, int>> treeMap;
+
+    // Example Key Pairs
+    KeyValuePairs<int, int> first(4,5);
+    KeyValuePairs<int, int> second(3,6);
+    KeyValuePairs<int, int> third(7,8);
+
+    treeMap.insert(first);
+    treeMap.insert(second);
+    treeMap.insert(third);
+
+    // Displaying Pairs
+    treeMap.inOrder();
+
+
+    std::cout<<"\n\nCreating Map using Class implementation: Second Method"<<std::endl;
+
+    // USING MAP CLASS
+    Map<int, int> numbers(4,5);
+
+    // Example Insert Keys;
+    numbers.InsertMap(second);
+    numbers.InsertMap(third);
+
+    numbers.printInorder();
+
+
+
+
   
     
     
