@@ -415,6 +415,17 @@ public:
     }
   }
   
+  // finding Key Value Pairs 
+  bool printValueFind(const T &input_item) {
+    tNode<T> *ptr = SearchKV(input_item, root);
+    if (ptr == nullptr) {
+      std::cout << "Input: " << *(input_item) << " not found" << endl;
+      return false;
+    } else {
+      std::cout << "Input was found!" << *input_item << endl;
+      return true;
+    }
+  }
 
   // Insert Function
   void insert(const T &item) { root = InsertRecursive(item, root); }

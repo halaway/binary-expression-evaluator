@@ -137,6 +137,8 @@ public:
     if(root == nullptr ){
       root = new BST<KeyValuePairs<K, V> *>();
     }
+
+    //if( root-> )
     root->insertKV(ptr);
     
   }
@@ -156,8 +158,22 @@ public:
 
     KeyValuePairs<K,V> *findKey = new KeyValuePairs<K,V>(key, V());
     root->printFind(findKey);
-
   }
+
+  bool findValue(const KeyValuePairs<K,V>& rhs){
+
+    //Create new pair
+    KeyValuePairs<K,V> *findKey = new KeyValuePairs<K,V>(rhs);
+    
+    //Check if root is empty
+     if(root == nullptr ){
+      root = new BST<KeyValuePairs<K, V> *>();
+    }
+    bool found = root->printValueFind(findKey);
+    
+
+    return found;
+  }   
 
   // Overloaded print find using Key Value Pairs
   void printFind(const KeyValuePairs<K,V> &rhs){

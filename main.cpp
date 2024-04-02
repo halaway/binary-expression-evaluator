@@ -86,11 +86,12 @@ int main(){
 
     std::cout<<"Using Operators"<<std::endl;
 
-    for(int i = 0; i < 15; i++)
-        iter[i]++;
+    // for(int i = 0; i < 15; i++)
+    //     iter[i]++;
 
-    iter.InsertMap(8,4);
-
+    //iter.printFind(third);
+    //iter[1]++;
+    iter.findValue(third);
     std::cout<<iter<<endl;
     
 
