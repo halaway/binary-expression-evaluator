@@ -65,31 +65,32 @@ private:
     return ptr;
   }
 
-tNode<T> *InsertRecursiveKV(const T &insert_item, tNode<T> *ptr) {
-    // create a new node if ptr of BST is NULL
-    if (ptr == NULL) {
-      ptr = new tNode<T>(insert_item);
+  // Recursive Node Traversals for Key Value Types
+  tNode<T> *InsertRecursiveKV(const T &insert_item, tNode<T> *ptr) {
+      // create a new node if ptr of BST is NULL
+      if (ptr == NULL) {
+        ptr = new tNode<T>(insert_item);
+        return ptr;
+      }
+
+      // Duplicate Item is Updated
+      if ( *(ptr->item) == *insert_item ){
+          (*(ptr->item)).valueVal = (*insert_item).valueVal;
+        return ptr;
+      }
+
+      // left tree
+      else if ( *(ptr->item) > *insert_item) {
+        ptr->left = InsertRecursive(insert_item, ptr->left);
+      }
+      // right tree
+      else if ( *(ptr->item) < *insert_item) {
+        ptr->right = InsertRecursive(insert_item, ptr->right);
+      }
+
+
       return ptr;
-    }
-
-    // Duplicate Item is Updated
-    if ( *(ptr->item) == *insert_item ){
-        (*(ptr->item)).valueVal = (*insert_item).valueVal;
-      return ptr;
-    }
-
-    // left tree
-    else if ( *(ptr->item) > *insert_item) {
-      ptr->left = InsertRecursive(insert_item, ptr->left);
-    }
-    // right tree
-    else if ( *(ptr->item) < *insert_item) {
-      ptr->right = InsertRecursive(insert_item, ptr->right);
-    }
-
-
-    return ptr;
-  }  
+    }  
 
   // Inorder Traversal Helper Function
   void const InorderTraversal(const tNode<T> *ptr) {
