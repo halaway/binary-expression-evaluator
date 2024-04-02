@@ -19,6 +19,7 @@ int main(){
     BST<string> *word;
     word = new BST<string>;
     
+    
     for(auto it : letter_alpha){ word->insert(it); }
     //displays BST word in Order
     word->inOrder();
