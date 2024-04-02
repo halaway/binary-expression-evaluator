@@ -85,25 +85,47 @@ private:
   // keyValuePairs
   KeyValuePairs<K, V> *pairs;
 
+  // overloaded [] operator  
+  V& searchInsert(BST<KeyValuePairs<K, V> *> *root, const K& key){
+    
+    // Creating key to search before insertion
+    KeyValuePairs<K,V> *kv = new KeyValuePairs<K,V>(key,key);
+    
+    // Search using BST  
+    tNode<KeyValuePairs<K, V> *> *foundNode = root->searchP(kv);
+
+    if( foundNode != nullptr )
+      return (foundNode->item)->valueVal;
+
+
+    else{
+      // Create new key value pair to insert with l-value reference
+      KeyValuePairs<K,V> *kv = new KeyValuePairs<K,V>(key,V());
+
+      root->insert(kv);
+      return kv->valueVal;
+    }
+  }
+
 public:
   // Default Constructor
-  Map() : root(NULL) { pairs = new KeyValuePairs<K, V>(); }
+  Map() : root(nullptr), pairs(nullptr) { pairs = new KeyValuePairs<K, V>();}
 
   // Constructor
-  Map(K keys, V vals) {      
-
+  Map(K keys, V vals) : root(nullptr), pairs(nullptr) {
     pairs = new KeyValuePairs<K, V>(keys, vals);
-    // root to create a tree of key value pairs
-    root = new BST<KeyValuePairs<K, V> *>(pairs);
-  }
+    root = new BST<KeyValuePairs<K, V> *>();
+    root->insert(pairs);
+}
 
   // Insert Keys and Values Member Function
   void InsertMap(K keys, V vals) {
 
-    // Create New Entry
-    KeyValuePairs<K, V> *ptr;
-    ptr = new KeyValuePairs<K, V>(keys, vals);
-    root->insert(ptr);
+    pairs = new KeyValuePairs<K, V>(keys,vals); 
+     if(root == nullptr ){
+      root = new BST<KeyValuePairs<K, V> *>();
+    }
+    root->insertKV(pairs);
   }
 
   // Overridden Insert Member Function
@@ -111,8 +133,42 @@ public:
     // Create New Entry
     KeyValuePairs<K, V> *ptr;
     ptr = new KeyValuePairs<K, V>(rhs);
+    
+    if(root == nullptr ){
+      root = new BST<KeyValuePairs<K, V> *>();
+    }
+    root->insertKV(ptr);
+    
+  }
 
-    root->insert(ptr);
+   //Overloaded [] Operator 
+  V& operator[](const K &key){
+
+    if(root == nullptr ){
+      root = new BST<KeyValuePairs<K, V> *>();
+    }
+
+    return searchInsert(root, key);
+  } 
+
+  //Finding Keys Print
+  void printFind(const K& key ){
+
+    KeyValuePairs<K,V> *findKey = new KeyValuePairs<K,V>(key, V());
+    root->printFind(findKey);
+
+  }
+
+  // Overloaded print find using Key Value Pairs
+  void printFind(const KeyValuePairs<K,V> &rhs){
+
+    KeyValuePairs<K,V> *findKey = new KeyValuePairs<K,V>(rhs);
+    if(root == nullptr ){
+      root = new BST<KeyValuePairs<K, V> *>();
+    }
+    root->printFind(findKey);
+
+
   }
 
   // Inorder Key Pairs
@@ -128,11 +184,22 @@ public:
   //   return os;
   // }
 
+  // Checking Map Root Status
+  bool empty(){
+    return root == nullptr;
+  }
+
   friend std::ostream& operator<<(std::ostream& os,  Map<K, V>& map) {
+
+    if ( map.empty() ) {
+        os << "Empty map";
+    } else {
     // Call a recursive function to traverse the BST and print each element
-    map.printInorder();
-    return os;
+      map.printInorder();
+      
     }
+    return os;
+  }
 
     
 };

@@ -10,8 +10,6 @@ using namespace std;
 /**
  * test of BST and MAP Implementation
 */
-
-
 int main(){
     
     //BST of letters
@@ -56,7 +54,7 @@ int main(){
     // BINARY TREE KV Insert
 
     std::cout<<"\nCreating Map using BST: First Method"<<std::endl;
-    BST<KeyValuePairs<int, int>> treeMap;
+    BST<KeyValuePairs<int, int> > treeMap;
 
     // Example Key Pairs
     KeyValuePairs<int, int> first(4,5);
@@ -72,21 +70,29 @@ int main(){
 
 
     std::cout<<"\n\nCreating Map using Class implementation: Second Method"<<std::endl;
-
     // USING MAP CLASS
-    Map<int, int> numbers(4,5);
-
-    // Example Insert Keys;
-    numbers.InsertMap(second);
-    numbers.InsertMap(third);
-
-    numbers.printInorder();
+    Map<int, int> numbers;
+    Map<int, int>iter;
 
 
+    //Example Using Subscript
+    numbers[3] = 6;
+    numbers[4] = 5;
+    numbers[7] = 8;
+
+    std::cout<<numbers<<std::endl;
 
 
-  
+    std::cout<<"Using Operators"<<std::endl;
+
+    for(int i = 0; i < 15; i++)
+        iter[i]++;
+
+    iter.InsertMap(8,4);
+
+    std::cout<<iter<<endl;
     
-    
+
+
     return 0;
 }

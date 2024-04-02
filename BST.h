@@ -49,8 +49,9 @@ private:
   // Recursive BST Insert Function
   tNode<T> *InsertRecursive(const T &insert_item, tNode<T> *ptr) {
     // create a new node if ptr of BST is NULL
-    if (ptr == NULL) {
+    if (ptr == nullptr) {
       ptr = new tNode<T>(insert_item);
+      
       return ptr;
     }
     // left tree
@@ -63,6 +64,32 @@ private:
     }
     return ptr;
   }
+
+tNode<T> *InsertRecursiveKV(const T &insert_item, tNode<T> *ptr) {
+    // create a new node if ptr of BST is NULL
+    if (ptr == NULL) {
+      ptr = new tNode<T>(insert_item);
+      return ptr;
+    }
+
+    // Duplicate Item is Updated
+    if ( *(ptr->item) == *insert_item ){
+        (*(ptr->item)).valueVal = (*insert_item).valueVal;
+      return ptr;
+    }
+
+    // left tree
+    else if ( *(ptr->item) > *insert_item) {
+      ptr->left = InsertRecursive(insert_item, ptr->left);
+    }
+    // right tree
+    else if ( *(ptr->item) < *insert_item) {
+      ptr->right = InsertRecursive(insert_item, ptr->right);
+    }
+
+
+    return ptr;
+  }  
 
   // Inorder Traversal Helper Function
   void const InorderTraversal(const tNode<T> *ptr) {
@@ -78,15 +105,15 @@ private:
   tNode<T> *searchP(const T &find_item, tNode<T> *ptr) {
     if (ptr != NULL) {
 
-      if (ptr->item == find_item) {
+      if ( *(ptr->item) == *find_item) {
         return ptr;
       }
       // find_item is less than current
-      else if (ptr->item > find_item) {
+      else if ( *(ptr->item) > *find_item) {
         return searchP(find_item, ptr->left);
       }
       // find_item is greater than current
-      else if (ptr->item < find_item) {
+      else if ( *(ptr->item) < *find_item) {
         return searchP(find_item, ptr->right);
       }
     }
@@ -221,7 +248,7 @@ private:
   tNode<T> *Search(const T &find_item, tNode<T> *ptr) {
     if (ptr != NULL) {
 
-      if (ptr->item == find_item) {
+      if ( ptr->item == find_item) {
         return ptr;
       }
       // find_item is less than current
@@ -231,6 +258,26 @@ private:
       // find_item is greater than current
       else if (ptr->item < find_item) {
         return Search(find_item, ptr->right);
+      }
+    }
+    return NULL;
+  }
+  
+  
+  // Recursive BST Search For Key Value Pairs 
+  tNode<T> *SearchKV(const T &find_item, tNode<T> *ptr) {
+    if (ptr != NULL) {
+
+      if (*( ptr->item) == *find_item) {
+        return ptr;
+      }
+      // find_item is less than current
+      else if ( *(ptr->item) > *find_item) {
+        return SearchKV(find_item, ptr->left);
+      }
+      // find_item is greater than current
+      else if ( *(ptr->item) < *find_item) {
+        return SearchKV(find_item, ptr->right);
       }
     }
     return NULL;
@@ -329,9 +376,10 @@ public:
     }
   }
 
-
-   tNode<T>* searchP(const T& find_item) const {
-        return searchP(root, find_item);
+  // Search Function for Key Value Pairs
+  tNode<T>* searchP(const T& find_item)  {
+        //return searchP(root, find_item);
+        return SearchKV(find_item, root);
     }
 
   // check if char is an operator
@@ -350,9 +398,19 @@ public:
   void search(const T &input_item) {
     tNode<T> *ptr = Search(input_item, root);
     if (ptr == nullptr) {
-      std::cout << "Input: " << input_item << " not found" << endl;
+      std::cout << "Input: " << (input_item) << " not found" << endl;
     } else {
       std::cout << "Input was found!" << input_item << endl;
+    }
+  }
+
+  // finding Key Value Pairs 
+  void printFind(const T &input_item) {
+    tNode<T> *ptr = SearchKV(input_item, root);
+    if (ptr == nullptr) {
+      std::cout << "Input: " << *(input_item) << " not found" << endl;
+    } else {
+      std::cout << "Input was found!" << *input_item << endl;
     }
   }
   
@@ -364,6 +422,8 @@ public:
     2. insert Node into tree
     3. search function returning tNode pointer
   */
+
+  void insertKV(const T &item) { root = InsertRecursiveKV(item, root); }
 
   // PreOrder Traversal Member Function
   void preOrder() { PreOrderTraversal(root); }
